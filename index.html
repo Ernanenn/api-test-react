@@ -1,16 +1,66 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR"> <!-- Define o idioma da página como Português do Brasil, importante para SEO e acessibilidade. -->
 
 <head>
   <meta charset="UTF-8" />
+  <!-- Define a codificação de caracteres como UTF-8, garantindo a exibição correta de caracteres especiais. -->
+
+  <!-- Favicon: Ícone exibido na aba do navegador. Aponta para o favicon padrão do Vite. -->
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+  <!-- Meta tag viewport: Essencial para responsividade. Garante que a página se adapte a diferentes tamanhos de tela de dispositivos. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Test Suite</title>
+
+  <!-- Título da página: Importante para SEO (aparece nos resultados de busca) e para a aba do navegador. -->
+  <title>API Test Suite - Ferramenta de Testes de API</title>
+
+  <!-- Meta descrição: Um resumo conciso do conteúdo da página. Crucial para SEO, pois aparece abaixo do título nos resultados de busca. -->
+  <meta name="description"
+    content="Ferramenta intuitiva e poderosa para testes de APIs RESTful. Configure requisições, valide respostas e exporte relatórios de forma eficiente." />
+
+  <!-- Meta palavras-chave: Embora menos impactante hoje para o Google, ainda pode ser útil para outros motores de busca. -->
+  <meta name="keywords"
+    content="API, Teste de API, Testes Automatizados, RESTful, Ferramenta de Testes, Frontend, React, Vite, Validação de API, Relatórios de Teste, Performance API" />
+
+  <!-- Meta autor: Identifica o autor ou a equipe responsável pela página. -->
+  <meta name="author" content="Seu Nome ou Nome da Equipe" />
+
+  <!-- Canonical URL: Ajuda a evitar problemas de conteúdo duplicado, apontando para a versão preferencial da página. -->
+  <!-- Substitua 'https://www.seuapp.com' pela URL real da sua aplicação quando estiver em produção. -->
+  <link rel="canonical" href="https://www.seuapp.com/" />
+
+  <!-- Open Graph Tags (para compartilhamento em redes sociais como Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:title" content="API Test Suite - Ferramenta de Testes de API" />
+  <meta property="og:description"
+    content="Ferramenta intuitiva e poderosa para testes de APIs RESTful. Configure requisições, valide respostas e exporte relatórios de forma eficiente." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.seuapp.com/" />
+  <!-- Imagem para pré-visualização em redes sociais. Crie uma imagem atraente (ex: 1200x630px) e coloque-a em 'public/images/og-image.png'. -->
+  <meta property="og:image" content="https://www.seuapp.com/images/og-image.png" />
+  <meta property="og:image:alt" content="Captura de tela da API Test Suite em ação" />
+
+  <!-- Twitter Card Tags (para compartilhamento no Twitter) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="API Test Suite - Ferramenta de Testes de API" />
+  <meta name="twitter:description"
+    content="Ferramenta intuitiva e poderosa para testes de APIs RESTful. Configure requisições, valide respostas e exporte relatórios de forma eficiente." />
+  <meta name="twitter:image" content="https://www.seuapp.com/images/twitter-card-image.png" />
+  <!-- Opcional: Adicione sua conta do Twitter, se houver. Ex: <meta name="twitter:site" content="@seu_twitter" /> -->
+
+  <!-- Preconnect para recursos importantes (como Google Fonts ou APIs externas) para acelerar o carregamento. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Carregamento do CSS: Caminho corrigido para a raiz pública do Vite, usando stylesAlt.css. -->
   <link rel="stylesheet" href="./public/stylesAlt.css">
 </head>
 
 <body>
+  <!-- Ponto de montagem da sua aplicação React. O React injetará todo o conteúdo da aplicação dentro deste div. -->
   <div id="root"></div>
+
+  <!-- Script principal da sua aplicação React, carregado como módulo.
+         'type="module"' permite usar import/export e carregamento assíncrono por padrão. -->
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

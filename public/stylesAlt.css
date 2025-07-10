@@ -1,124 +1,180 @@
-/* Reset Básico */
+/* Reset Básico: Garante consistência de margens e padding entre navegadores. */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Inclui padding e borda no cálculo da largura/altura total de um elemento. */
 }
 
-/* Variáveis CSS atualizadas com a nova paleta e estilos */
+/* Variáveis CSS atualizadas com a nova paleta e estilos.
+   Definidas no :root para serem acessíveis globalmente. */
 :root {
     /* Cores Primárias e de Acento */
-    --primary-color: #3B82F6; /* Azul vibrante */
+    --primary-color: #3B82F6;
+    /* Azul vibrante, usado para elementos principais e interativos. */
     --primary-dark: #2563EB;
-    --secondary-accent-color: #6366F1; /* Roxo suave para acentos */
+    /* Versão mais escura da cor primária. */
+    --secondary-accent-color: #6366F1;
+    /* Roxo suave para acentos visuais. */
 
-    /* Cores de Status */
-    --success-color: #22C55E; /* Verde mais vibrante */
-    --success-light: #4ADE80; /* Tom mais claro de verde */
-    --warning-color: #F59E0B; /* Laranja mais quente */
-    --warning-light: #FBBF24; /* Tom mais claro de laranja */
-    --danger-color: #EF4444; /* Vermelho mais forte */
-    --info-color: #0EA5E9; /* Azul claro para info */
+    /* Cores de Status (para feedback visual de sucesso, aviso, perigo, informação) */
+    --success-color: #22C55E;
+    /* Verde mais vibrante para sucesso. */
+    --success-light: #4ADE80;
+    /* Tom mais claro de verde. */
+    --warning-color: #F59E0B;
+    /* Laranja mais quente para avisos. */
+    --warning-light: #FBBF24;
+    /* Tom mais claro de laranja. */
+    --danger-color: #EF4444;
+    /* Vermelho mais forte para erros/perigo. */
+    --info-color: #0EA5E9;
+    /* Azul claro para informações. */
 
     /* Cores Neutras e de Texto */
-    --dark-color: #1F2937; /* Texto e fundos escuros, quase preto */
-    --dark-light: #374151; /* Tom mais claro de escuro */
-    --light-bg: #F8FAFC; /* Fundo principal muito suave (branco off-white) */
-    --secondary-bg: #F1F5F9; /* Fundo secundário, para contraste sutil */
-    --border-color: #E5E7EB; /* Bordas mais suaves */
-    --text-muted: #6B7280; /* Texto cinza suave */
+    --dark-color: #1F2937;
+    /* Texto e fundos escuros, quase preto. */
+    --dark-light: #374151;
+    /* Tom mais claro de escuro, para subtítulos ou detalhes. */
+    --light-bg: #F0F2F5;
+    /* ALTERADO: Fundo principal mais suave, um cinza muito claro. */
+    --secondary-bg: #E8ECF1;
+    /* ALTERADO: Fundo secundário, um cinza um pouco mais escuro para contraste sutil. */
+    --border-color: #D1D5DB;
+    /* ALTERADO: Bordas ligeiramente mais escuras para se adequar ao novo fundo. */
+    --text-muted: #6B7280;
+    /* Texto cinza suave para informações secundárias. */
 
-    /* Sombras (inspiradas em Tailwind CSS) */
+    /* Sombras (inspiradas em Tailwind CSS para profundidade moderna) */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* Sombra pequena e sutil. */
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    /* Sombra média. */
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Sombra grande para elementos de destaque. */
 
     /* Cantos Arredondados */
-    --border-radius: 8px; /* Ligeiramente mais arredondado */
-    --border-radius-lg: 16px; /* Mais arredondado para containers maiores */
+    --border-radius: 8px;
+    /* Ligeiramente mais arredondado para elementos menores. */
+    --border-radius-lg: 16px;
+    /* Mais arredondado para containers maiores. */
 
-    /* Transições */
-    --transition: all 0.2s ease-in-out; /* Transições mais fluidas */
+    /* Transições para efeitos suaves de hover/focus */
+    --transition: all 0.2s ease-in-out;
+    /* Transições mais fluidas. */
 
     /* Tipografia */
-    --font-family-base: 'Inter', sans-serif; /* Fonte principal moderna */
-    --font-family-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace; /* Fontes monoespaçadas para código */
+    --font-family-base: 'Inter', sans-serif;
+    /* Fonte principal moderna e legível. */
+    --font-family-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+    /* Fontes monoespaçadas para código e dados técnicos. */
 }
 
-/* Importação da fonte Inter do Google Fonts */
+/* Importação da fonte Inter do Google Fonts.
+   Certifique-se de que esta URL esteja acessível. */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-/* Importação da fonte Fira Code do Google Fonts (opcional, se não tiver localmente) */
+/* Importação da fonte Fira Code do Google Fonts (opcional, se não tiver localmente). */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
 
-/* Base Styles */
+/* Base Styles do Corpo da Página */
 body {
     font-family: var(--font-family-base);
-    /* Gradiente de fundo mais suave e moderno */
+    /* Aplica a fonte base. */
+    /* Gradiente de fundo mais suave e moderno para o corpo da página. */
     background: linear-gradient(135deg, #A7BFE8 0%, #6190E8 100%);
     min-height: 100vh;
+    /* Garante que o corpo ocupe a altura total da viewport. */
     padding: 20px;
+    /* Espaçamento geral da página. */
     line-height: 1.6;
-    color: var(--dark-color); /* Cor de texto base */
+    /* Altura da linha para melhor legibilidade. */
+    color: var(--dark-color);
+    /* Cor de texto padrão. */
 }
 
 /* Container Principal da Aplicação */
 .container {
     max-width: 1200px;
+    /* Largura máxima para o conteúdo central. */
     margin: 0 auto;
-    background: var(--light-bg); /* Fundo principal suave */
-    border-radius: var(--border-radius-lg); /* Cantos mais arredondados */
-    box-shadow: var(--shadow-lg); /* Sombra mais pronunciada e moderna */
+    /* Centraliza o container na página. */
+    background: var(--light-bg);
+    /* Fundo principal suave. */
+    border-radius: var(--border-radius-lg);
+    /* Cantos mais arredondados. */
+    box-shadow: var(--shadow-lg);
+    /* Sombra mais pronunciada e moderna para destaque. */
     overflow: hidden;
+    /* Garante que o conteúdo não vaze dos cantos arredondados. */
 }
 
-/* Header */
+/* Estilos do Cabeçalho da Aplicação */
 .header {
-    background: linear-gradient(45deg, var(--dark-color), var(--dark-light)); /* Mantém o gradiente escuro */
+    background: linear-gradient(45deg, var(--dark-color), var(--dark-light));
+    /* Mantém o gradiente escuro para o cabeçalho. */
     color: white;
+    /* Cor do texto no cabeçalho. */
     padding: 30px;
+    /* Espaçamento interno. */
     text-align: center;
+    /* Centraliza o texto. */
 }
 
 .header h1 {
     font-size: 2.5em;
+    /* Tamanho do título principal. */
     margin-bottom: 10px;
+    /* Espaçamento abaixo do título. */
     font-weight: 700;
+    /* Peso da fonte para destaque. */
 }
 
 .header p {
     opacity: 0.9;
+    /* Leve transparência para a descrição. */
     font-size: 1.1em;
+    /* Tamanho da fonte da descrição. */
     font-weight: 300;
+    /* Peso da fonte mais leve. */
 }
 
-/* Main Content Layout */
+/* Layout do Conteúdo Principal (formulário de teste e resultados) */
 .main-content {
     display: grid;
+    /* Usa Grid Layout para as duas colunas. */
     grid-template-columns: 1fr 1fr;
-    gap: 0; /* Mantém o gap de 0 para a linha divisória */
+    /* Duas colunas de largura igual. */
+    gap: 0;
+    /* Sem espaçamento entre as colunas (a borda direita do .test-config serve como divisor). */
     min-height: 600px;
+    /* Altura mínima para o conteúdo principal. */
 }
 
-/* Test Configuration Panel */
+/* Painel de Configuração de Teste (lado esquerdo) */
 .test-config {
     padding: 30px;
-    background: var(--secondary-bg); /* Fundo secundário para contraste sutil */
+    /* Espaçamento interno. */
+    background: var(--secondary-bg);
+    /* Fundo secundário para contraste sutil. */
     border-right: 1px solid var(--border-color);
+    /* Linha divisória entre os painéis. */
 }
 
-/* Test Configuration Forms (Functional and Performance) */
+/* Estilos para os formulários de configuração (funcional e performance) */
 .test-config-form {
-    padding-top: 20px; /* Adiciona um pouco de padding para separar do cabeçalho da aba */
+    padding-top: 20px;
+    /* Adiciona um pouco de padding para separar do cabeçalho da aba. */
 }
 
-/* Test Results Panel */
+/* Painel de Resultados de Teste (lado direito) */
 .test-results {
     padding: 30px;
-    background: var(--light-bg); /* Fundo principal */
+    background: var(--light-bg);
+    /* Fundo principal */
     overflow: hidden;
 }
 
-/* Section Titles */
+/* Títulos de Seção (ex: "Resultados dos Testes", "Configuração do Teste") */
 .section-title {
     font-size: 1.5em;
     margin-bottom: 20px;
@@ -145,13 +201,14 @@ select,
 textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--border-color); /* Borda mais fina */
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     font-size: 14px;
     transition: var(--transition);
-    font-family: var(--font-family-base); /* Usa a fonte base */
+    font-family: var(--font-family-base);
     color: var(--dark-color);
     background-color: white;
+    /* Mantém o fundo branco para inputs para melhor visibilidade */
 }
 
 input:focus,
@@ -159,13 +216,13 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Sombra de foco com base na primary-color */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
 textarea {
     resize: vertical;
     min-height: 80px;
-    font-family: var(--font-family-mono); /* Fonte monoespaçada para textarea de código */
+    font-family: var(--font-family-mono);
 }
 
 /* Button Styles */
@@ -178,23 +235,23 @@ textarea {
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
-    transition: var(--transition); /* Usa a variável de transição */
-    display: inline-flex; /* Permite alinhar ícones e texto */
+    transition: var(--transition);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; /* Espaço entre ícone e texto */
+    gap: 8px;
     text-decoration: none;
-    box-shadow: var(--shadow-md); /* Sombra média para botões */
+    box-shadow: var(--shadow-md);
 }
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg); /* Sombra maior ao hover */
+    box-shadow: var(--shadow-lg);
 }
 
 .btn:active {
     transform: translateY(0);
-    box-shadow: var(--shadow-sm); /* Sombra menor ao clique */
+    box-shadow: var(--shadow-sm);
 }
 
 .btn:disabled {
@@ -209,10 +266,10 @@ textarea {
 }
 
 .btn-export {
-    background: linear-gradient(45deg, var(--text-muted), var(--dark-light)); /* Cores mais neutras para exportar */
+    background: linear-gradient(45deg, var(--text-muted), var(--dark-light));
 }
 
-/* Novo container para os botões */
+/* Container para agrupar botões */
 .button-group {
     display: flex;
     flex-wrap: wrap;
@@ -221,7 +278,7 @@ textarea {
 
 /* Results Container */
 .results-container {
-    background: var(--secondary-bg); /* Fundo secundário para contraste sutil */
+    background: var(--secondary-bg);
     border-radius: var(--border-radius-lg);
     padding: 20px;
     margin-top: 20px;
@@ -235,25 +292,31 @@ textarea {
     border-radius: var(--border-radius);
     border-left: 4px solid;
     background: white;
-    box-shadow: var(--shadow-sm); /* Sombra sutil para cards */
+    /* Mantém o fundo branco para os cards de resultado */
+    box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
 
 .test-result:hover {
     transform: translateY(-1px);
-    box-shadow: var(--shadow-md); /* Sombra média ao hover */
+    box-shadow: var(--shadow-md);
 }
 
+/* Estilos para cards de teste bem-sucedido */
 .test-result.success {
-    background: #F0FDF4; /* Fundo muito suave para sucesso */
+    background: #F0FDF4;
+    /* Fundo muito suave para sucesso */
     border-color: var(--success-color);
 }
 
+/* Estilos para cards de teste com falha */
 .test-result.error {
-    background: #FEF2F2; /* Fundo muito suave para erro */
+    background: #FEF2F2;
+    /* Fundo muito suave para erro */
     border-color: var(--danger-color);
 }
 
+/* Título e status dentro do card de resultado */
 .test-result h4 {
     display: flex;
     justify-content: space-between;
@@ -262,36 +325,42 @@ textarea {
     font-weight: 600;
     margin-bottom: 10px;
     color: var(--dark-color);
+    /* Mantém o título do card escuro para contraste */
 }
 
 .test-result .test-status {
     font-size: 0.9em;
-    display: flex; /* Para alinhar ícone e texto de status */
+    display: flex;
     align-items: center;
     gap: 5px;
 }
 
 .test-result.success .test-status {
     color: var(--success-color);
+    /* Ícone e texto "Passou" verdes */
 }
 
 .test-result.error .test-status {
     color: var(--danger-color);
+    /* Ícone e texto "Falhou" vermelhos */
 }
 
-.test-result p {
-    margin-bottom: 5px;
-    font-size: 0.9em;
-    color: var(--dark-light);
-    word-break: break-word;
+/* CORRIGIDO: Aplicar a cor do status diretamente aos parágrafos dentro de cards de sucesso/erro */
+.test-result.success p {
+    color: var(--success-color);
 }
 
+.test-result.error p {
+    color: var(--danger-color);
+}
+
+/* Mantém o texto em negrito escuro para ênfase, sobrescrevendo a cor herdada */
 .test-result p strong {
     color: var(--dark-color);
 }
 
 .test-result pre {
-    background: var(--secondary-bg); /* Fundo sutil para blocos de código */
+    background: var(--secondary-bg);
     padding: 10px;
     border-radius: var(--border-radius);
     overflow-x: auto;
@@ -300,8 +369,9 @@ textarea {
     font-size: 0.85em;
     line-height: 1.4;
     color: var(--dark-color);
+    /* Mantém a cor do código escura para legibilidade */
     margin-top: 10px;
-    font-family: var(--font-family-mono); /* Aplica a fonte monoespaçada */
+    font-family: var(--font-family-mono);
 }
 
 .test-result .validations-list {
@@ -313,6 +383,7 @@ textarea {
 .test-result .validations-list h5 {
     font-size: 0.95em;
     color: var(--dark-color);
+    /* Mantém o título da lista de validações escuro */
     margin-bottom: 8px;
 }
 
@@ -321,20 +392,16 @@ textarea {
     padding-left: 0;
 }
 
-.test-result .validations-list li {
-    font-size: 0.85em;
-    margin-bottom: 4px;
-}
-
-.test-result .validations-list li.success {
+/* CORRIGIDO: Aplicar a cor do status diretamente aos itens de lista de validação */
+.test-result.success .validations-list li {
     color: var(--success-color);
 }
 
-.test-result .validations-list li.error {
+.test-result.error .validations-list li {
     color: var(--danger-color);
 }
 
-/* Estilos para Métricas de Performance */
+/* Estilos para Métricas de Performance dentro do card de resultado */
 .performance-metrics {
     margin-top: 15px;
     border-top: 1px solid var(--border-color);
@@ -344,6 +411,7 @@ textarea {
 .performance-metrics h5 {
     font-size: 0.95em;
     color: var(--dark-color);
+    /* Mantém o título das métricas escuro */
     margin-bottom: 8px;
 }
 
@@ -352,13 +420,16 @@ textarea {
     padding-left: 0;
 }
 
-.performance-metrics li {
-    font-size: 0.85em;
-    margin-bottom: 4px;
-    color: var(--dark-light);
+/* CORRIGIDO: Aplicar a cor do status diretamente aos itens de lista de métricas de performance */
+.test-result.success .performance-metrics li {
+    color: var(--success-color);
 }
 
-/* Test Summary */
+.test-result.error .performance-metrics li {
+    color: var(--danger-color);
+}
+
+/* Seção de Sumário dos Testes */
 .test-summary {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -366,19 +437,20 @@ textarea {
     margin-bottom: 20px;
 }
 
+/* Cards Individuais de Sumário */
 .summary-card {
     background: white;
     padding: 20px;
-    border-radius: var(--border-radius-lg); /* Cantos mais arredondados */
+    border-radius: var(--border-radius-lg);
     text-align: center;
-    box-shadow: var(--shadow-md); /* Sombra média para cards de resumo */
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     transition: var(--transition);
 }
 
 .summary-card:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg); /* Sombra maior ao hover */
+    box-shadow: var(--shadow-lg);
 }
 
 .summary-number {
@@ -387,6 +459,7 @@ textarea {
     margin-bottom: 5px;
 }
 
+/* Cores específicas para os números de sumário */
 .summary-card.passed .summary-number {
     color: var(--success-color);
 }
@@ -399,16 +472,16 @@ textarea {
     color: var(--info-color);
 }
 
-/* Loading Spinner */
+/* Estilos para o Spinner de Carregamento */
 .loading {
-    display: none; /* Controlado via JS/React */
+    display: none;
     text-align: center;
     padding: 20px;
 }
 
 .spinner {
-    border: 4px solid var(--border-color); /* Cor da borda do spinner */
-    border-top: 4px solid var(--primary-color); /* Cor da parte animada */
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -420,18 +493,19 @@ textarea {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
 }
 
-/* Utility Classes */
+/* Classes de Utilidade */
 .text-muted {
     color: var(--text-muted);
     font-style: italic;
 }
 
-/* Tab Navigation Styles */
+/* Estilos para a Navegação por Abas */
 .tab-navigation {
     display: flex;
     margin-bottom: 20px;
@@ -460,8 +534,7 @@ textarea {
     border-bottom-color: var(--primary-color);
 }
 
-
-/* Responsive Design */
+/* Design Responsivo: Adaptação para diferentes tamanhos de tela */
 @media (max-width: 992px) {
     .main-content {
         grid-template-columns: 1fr;
@@ -512,7 +585,7 @@ textarea {
     }
 }
 
-/* Print Styles */
+/* Estilos de Impressão: Otimiza a aparência da página ao ser impressa */
 @media print {
     body {
         background: white;
