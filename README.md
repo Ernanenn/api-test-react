@@ -58,8 +58,8 @@ cd meu-app
 Instale as dependências:
 
 npm install
-# ou yarn install
-# ou pnpm install
+# yarn install
+# pnpm install
 
 Scripts Disponíveis
 No diretório do projeto, você pode rodar:
