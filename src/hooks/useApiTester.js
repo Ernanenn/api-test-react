@@ -37,74 +37,79 @@ export const useApiTester = () => {
         return runValidations(response, config);
     }, []);
 
-    // Função para executar um teste de API
-    const runTest = useCallback(async (config) => {
-        setIsLoading(true);
-        testCounter.current += 1;
-
+    // Função auxiliar para executar uma única requisição de API
+    const executeSingleRequest = useCallback(async (config) => {
         const startTime = performance.now();
-        let testResult = {
-            id: testCounter.current,
-            name: config.name || `Teste #${testCounter.current}`,
-            timestamp: new Date().toLocaleString('pt-BR'),
-            status: 'running',
-            ...config,
-        };
+        let responseData = null;
+        let responseStatus = null;
+        let responseStatusText = '';
+        let responseHeaders = {};
+        let duration = 0;
+        let errorMessage = null;
 
         try {
-            // Validação e parse de headers
-            let parsedHeaders = {};
-            if (config.headers) {
-                try {
-                    parsedHeaders = JSON.parse(config.headers);
-                } catch (headerError) {
-                    throw new Error(`Erro ao processar headers JSON: ${headerError.message}`);
-                }
-            }
-            
-            // Validação e parse do body
-            let parsedBody = undefined;
-            if (config.body && ['POST', 'PUT', 'PATCH'].includes(config.method)) {
-                try {
-                    parsedBody = JSON.parse(config.body);
-                    if (!parsedHeaders['Content-Type']) {
-                        parsedHeaders['Content-Type'] = 'application/json';
-                    }
-                } catch (bodyError) {
-                    throw new Error(`Erro ao processar body JSON: ${bodyError.message}`);
-                }
-            }
-
-            // Configuração da requisição fetch
             const fetchOptions = {
                 method: config.method,
-                headers: parsedHeaders,
-                body: ['POST', 'PUT', 'PATCH'].includes(config.method) ? config.body : undefined,
+                headers: config.headers, // Headers já parseados
+                body: ['POST', 'PUT', 'PATCH'].includes(config.method) && config.body ? JSON.stringify(config.body) : undefined,
             };
 
-            // Execução da requisição
             const response = await fetch(config.url, fetchOptions);
             const responseText = await response.text();
             const endTime = performance.now();
+            duration = parseFloat((endTime - startTime).toFixed(2));
 
-            // Tentativa de parse da resposta como JSON
-            let responseData = null;
+            responseStatus = response.status;
+            responseStatusText = response.statusText;
+            responseHeaders = Object.fromEntries(response.headers.entries());
+
             try { 
                 responseData = JSON.parse(responseText); 
             } catch { 
                 responseData = responseText; 
             }
 
-            // Processamento dos headers e cálculo da duração
-            const responseHeaders = Object.fromEntries(response.headers.entries());
-            const duration = parseFloat((endTime - startTime).toFixed(2));
+        } catch (error) {
+            errorMessage = `Erro de rede/requisição: ${error.message}`;
+            duration = parseFloat((performance.now() - startTime).toFixed(2));
+        }
 
-            // Armazenamento dos dados da resposta
-            testResult.response = { status: response.status, statusText: response.statusText, headers: responseHeaders, data: responseData, duration };
+        return {
+            status: responseStatus,
+            statusText: responseStatusText,
+            headers: responseHeaders,
+            data: responseData,
+            duration: duration,
+            error: errorMessage
+        };
+    }, []);
+
+
+    // Função para executar um teste de API funcional
+    const runTest = useCallback(async (config) => {
+        setIsLoading(true);
+        testCounter.current += 1;
+
+        let testResult = {
+            id: testCounter.current,
+            name: config.name || `Teste Funcional #${testCounter.current}`,
+            timestamp: new Date().toLocaleString('pt-BR'),
+            status: 'running',
+            ...config,
+        };
+
+        try {
+            const responseData = await executeSingleRequest(config);
+
+            if (responseData.error) {
+                throw new Error(responseData.error);
+            }
+
+            testResult.response = responseData;
 
             // Verificação do status esperado
             const expectedStatuses = Array.isArray(config.expectedStatus) ? config.expectedStatus : [config.expectedStatus];
-            const statusPassed = expectedStatuses.includes(response.status);
+            const statusPassed = expectedStatuses.includes(responseData.status);
 
             // Execução das validações
             const validations = memoizedRunValidations(testResult.response, config);
@@ -113,10 +118,10 @@ export const useApiTester = () => {
             // Determinação do resultado final do teste
             if (statusPassed && validationsPassed) {
                 testResult.status = 'passed';
-                testResult.message = `Teste passou com status ${response.status}.`;
+                testResult.message = `Teste funcional passou com status ${responseData.status}.`;
             } else {
                 testResult.status = 'failed';
-                testResult.message = !statusPassed ? `Falhou: Status esperado ${expectedStatuses.join(' ou ')}, recebido ${response.status}.` : 'Falhou: Uma ou mais validações adicionais não passaram.';
+                testResult.message = !statusPassed ? `Falhou: Status esperado ${expectedStatuses.join(' ou ')}, recebido ${responseData.status}.` : 'Falhou: Uma ou mais validações adicionais não passaram.';
             }
             testResult.validations = validations;
 
@@ -131,7 +136,119 @@ export const useApiTester = () => {
 
         // Atualização dos resultados (adicionando o novo teste no início da lista)
         setResults(prev => [testResult, ...prev]);
-    }, [memoizedRunValidations]);
+    }, [memoizedRunValidations, executeSingleRequest]);
+
+    // Nova função para executar um teste de performance
+    const runPerformanceTest = useCallback(async (config) => {
+        setIsLoading(true);
+        testCounter.current += 1;
+
+        const { numberOfRequests, concurrency } = config;
+        const requestQueue = [];
+        const allDurations = [];
+        let successfulRequests = 0;
+        let failedRequests = 0;
+
+        let performanceTestResult = {
+            id: testCounter.current,
+            name: config.name || `Teste de Performance #${testCounter.current}`,
+            timestamp: new Date().toLocaleString('pt-BR'),
+            type: 'performance', // Identificador de tipo de teste
+            status: 'running',
+            config: config,
+            metrics: {}, // Métricas de performance
+            individualResults: [] // Opcional: resultados de cada requisição
+        };
+
+        setResults(prev => [performanceTestResult, ...prev]); // Adiciona o resultado inicial
+
+        try {
+            const startTime = performance.now();
+
+            // Criar um pool de Promises para controlar a concorrência
+            const pLimit = (limit) => {
+                const queue = [];
+                let active = 0;
+
+                const next = () => {
+                    active--;
+                    if (queue.length > 0) {
+                        queue.shift()();
+                    }
+                };
+
+                return (fn) => new Promise((resolve, reject) => {
+                    const run = async () => {
+                        active++;
+                        try {
+                            resolve(await fn());
+                        } catch (err) {
+                            reject(err);
+                        } finally {
+                            next();
+                        }
+                    };
+
+                    if (active < limit) {
+                        run();
+                    } else {
+                        queue.push(run);
+                    }
+                });
+            };
+
+            const limit = pLimit(concurrency);
+            const requests = Array.from({ length: numberOfRequests }, (_, i) => 
+                limit(() => executeSingleRequest(config).then(response => {
+                    performanceTestResult.individualResults.push(response); // Coleta resultados individuais
+                    allDurations.push(response.duration);
+                    
+                    const expectedStatuses = Array.isArray(config.expectedStatus) ? config.expectedStatus : [config.expectedStatus];
+                    if (expectedStatuses.includes(response.status) && !response.error) {
+                        successfulRequests++;
+                    } else {
+                        failedRequests++;
+                    }
+                    return response; // Retorna a resposta para Promise.all
+                }))
+            );
+            
+            await Promise.allSettled(requests); // Usa allSettled para não parar no primeiro erro
+
+            const endTime = performance.now();
+            const totalDuration = parseFloat((endTime - startTime).toFixed(2));
+
+            const averageResponseTime = allDurations.length > 0 
+                ? parseFloat((allDurations.reduce((sum, d) => sum + d, 0) / allDurations.length).toFixed(2))
+                : 0;
+            const errorRate = numberOfRequests > 0 
+                ? parseFloat(((failedRequests / numberOfRequests) * 100).toFixed(2))
+                : 0;
+            const throughput = totalDuration > 0 
+                ? parseFloat(((numberOfRequests / (totalDuration / 1000))).toFixed(2)) // req/seg
+                : 0;
+
+            performanceTestResult.status = failedRequests > 0 ? 'failed' : 'passed';
+            performanceTestResult.message = `Teste de performance concluído. Total: ${numberOfRequests}, Sucesso: ${successfulRequests}, Falha: ${failedRequests}.`;
+            performanceTestResult.metrics = {
+                averageResponseTime,
+                errorRate,
+                throughput,
+                totalDuration,
+                successfulRequests,
+                failedRequests
+            };
+
+        } catch (error) {
+            performanceTestResult.status = 'failed';
+            performanceTestResult.message = `Erro crítico no teste de performance: ${error.message}`;
+            performanceTestResult.error = error.message;
+        } finally {
+            setIsLoading(false);
+            // Atualiza o resultado final na lista
+            setResults(prev => prev.map(res => res.id === performanceTestResult.id ? performanceTestResult : res));
+        }
+    }, [executeSingleRequest]); // Dependência do executeSingleRequest
 
     // Função para limpar todos os resultados
     const clearResults = useCallback(() => {
@@ -162,5 +279,5 @@ export const useApiTester = () => {
     }, [results, summary]);
 
     // Retorno das funções e estados do hook
-    return { results, summary, isLoading, runTest, clearResults, getJsonReport };
+    return { results, summary, isLoading, runTest, runPerformanceTest, clearResults, getJsonReport };
 };

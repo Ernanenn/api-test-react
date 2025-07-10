@@ -106,6 +106,11 @@ body {
     border-right: 1px solid var(--border-color);
 }
 
+/* Test Configuration Forms (Functional and Performance) */
+.test-config-form {
+    padding-top: 20px; /* Adiciona um pouco de padding para separar do cabeçalho da aba */
+}
+
 /* Test Results Panel */
 .test-results {
     padding: 30px;
@@ -201,7 +206,6 @@ textarea {
 
 .btn-warning {
     background: linear-gradient(45deg, var(--warning-color), var(--warning-light));
-    /* Não precisa de --btn-shadow-color se usar as variáveis gerais de sombra */
 }
 
 .btn-export {
@@ -330,6 +334,30 @@ textarea {
     color: var(--danger-color);
 }
 
+/* Estilos para Métricas de Performance */
+.performance-metrics {
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+}
+
+.performance-metrics h5 {
+    font-size: 0.95em;
+    color: var(--dark-color);
+    margin-bottom: 8px;
+}
+
+.performance-metrics ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.performance-metrics li {
+    font-size: 0.85em;
+    margin-bottom: 4px;
+    color: var(--dark-light);
+}
+
 /* Test Summary */
 .test-summary {
     display: grid;
@@ -402,6 +430,36 @@ textarea {
     color: var(--text-muted);
     font-style: italic;
 }
+
+/* Tab Navigation Styles */
+.tab-navigation {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button:hover {
+    color: var(--primary-color);
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
 
 /* Responsive Design */
 @media (max-width: 992px) {

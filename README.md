@@ -1,9 +1,7 @@
 🧪 API Test Suite
-
 Uma ferramenta intuitiva e poderosa para realizar testes automatizados em APIs RESTful, desenvolvida com React e Vite. Esta aplicação permite configurar requisições HTTP, executar testes, validar respostas e visualizar resultados de forma clara e organizada, além de possibilitar a exportação dos relatórios.
 
 🌟 Funcionalidades
-
 Configuração de Testes: Defina URL, método HTTP (GET, POST, PUT, DELETE, PATCH), headers (JSON), corpo da requisição (JSON), status HTTP esperado e tempo máximo de resposta.
 
 Execução de Testes: Inicie os testes com um clique e observe o feedback visual de carregamento.
@@ -19,7 +17,6 @@ Exportação de Relatórios: Exporte os resultados completos dos testes para arq
 Interface Responsiva: Design adaptável para diferentes tamanhos de tela (desktop, tablet, mobile).
 
 🛠️ Tecnologias Utilizadas
-
 Frontend:
 
 React (v18.x) - Biblioteca JavaScript para construção de interfaces de usuário.
