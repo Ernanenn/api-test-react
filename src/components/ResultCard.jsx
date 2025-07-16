@@ -15,11 +15,12 @@ const ResultCard = ({ result }) => {
                 </span>
             </h4>
             {/* Informações básicas do teste */}
-            <p><strong>Método:</strong> {result.method} {result.url}</p>
+            <p><strong>Método:</strong> {result.method}</p>
+            <p><strong>URL:</strong> {result.url}</p>
             <p><strong>Timestamp:</strong> {result.timestamp}</p>
             <p><strong>Mensagem:</strong> {result.message}</p>
             <p><strong>Duração:</strong> {result.response?.duration || result.duration}ms</p>
-            
+
             {/* Exibe as validações se existirem */}
             {result.validations && (
                 <div className="validations-list">
@@ -33,7 +34,7 @@ const ResultCard = ({ result }) => {
                     </ul>
                 </div>
             )}
-            
+
             {/* Exibe os dados da resposta se existirem */}
             {result.response?.data && (
                 <div>

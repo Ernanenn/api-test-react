@@ -29,8 +29,8 @@ const ResultsDisplay = ({ results, summary, isLoading, containerRef }) => (
                                 {/* Ícones para testes funcionais já estão no ResultCard, mas para performance podemos adaptar */}
                             </span>
                         </h4>
-                        <p><strong>URL:</strong> {result.url}</p>
                         <p><strong>Método:</strong> {result.method}</p>
+                        <p><strong>URL:</strong> {result.url}</p>
                         <p><strong>Timestamp:</strong> {result.timestamp}</p>
                         <p><strong>Mensagem:</strong> {result.message}</p>
 

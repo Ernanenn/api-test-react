@@ -152,6 +152,8 @@ export const useApiTester = () => {
         let performanceTestResult = {
             id: testCounter.current,
             name: config.name || `Teste de Performance #${testCounter.current}`,
+            method: config.method,
+            url: config.url,
             timestamp: new Date().toLocaleString('pt-BR'),
             type: 'performance', // Identificador de tipo de teste
             status: 'running',
