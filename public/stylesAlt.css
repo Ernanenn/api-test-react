@@ -3,191 +3,128 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Inclui padding e borda no cálculo da largura/altura total de um elemento. */
 }
 
-/* Variáveis CSS atualizadas com a nova paleta e estilos.
-   Definidas no :root para serem acessíveis globalmente. */
+/* Variáveis CSS com paleta e estilos. */
 :root {
     /* Cores Primárias e de Acento */
     --primary-color: #3B82F6;
-    /* Azul vibrante, usado para elementos principais e interativos. */
     --primary-dark: #2563EB;
-    /* Versão mais escura da cor primária. */
     --secondary-accent-color: #6366F1;
-    /* Roxo suave para acentos visuais. */
 
-    /* Cores de Status (para feedback visual de sucesso, aviso, perigo, informação) */
+    /* Cores de Status */
     --success-color: #22C55E;
-    /* Verde mais vibrante para sucesso. */
     --success-light: #4ADE80;
-    /* Tom mais claro de verde. */
     --warning-color: #F59E0B;
-    /* Laranja mais quente para avisos. */
     --warning-light: #FBBF24;
-    /* Tom mais claro de laranja. */
     --danger-color: #EF4444;
-    /* Vermelho mais forte para erros/perigo. */
     --info-color: #0EA5E9;
-    /* Azul claro para informações. */
 
     /* Cores Neutras e de Texto */
     --dark-color: #1F2937;
-    /* Texto e fundos escuros, quase preto. */
     --dark-light: #374151;
-    /* Tom mais claro de escuro, para subtítulos ou detalhes. */
     --light-bg: #F0F2F5;
-    /* Fundo principal mais suave, um cinza muito claro. */
     --secondary-bg: #E8ECF1;
-    /* Fundo secundário, um cinza um pouco mais escuro para contraste sutil. */
     --border-color: #D1D5DB;
-    /* Bordas ligeiramente mais escuras para se adequar ao novo fundo. */
     --text-muted: #6B7280;
-    /* Texto cinza suave para informações secundárias. */
 
-    /* Sombras (inspiradas em Tailwind CSS para profundidade moderna) */
+    /* Sombras */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    /* Sombra pequena e sutil. */
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    /* Sombra média. */
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    /* Sombra grande para elementos de destaque. */
 
     /* Cantos Arredondados */
     --border-radius: 8px;
-    /* Ligeiramente mais arredondado para elementos menores. */
     --border-radius-lg: 16px;
-    /* Mais arredondado para containers maiores. */
 
-    /* Transições para efeitos suaves de hover/focus */
+    /* Transições */
     --transition: all 0.2s ease-in-out;
-    /* Transições mais fluidas. */
 
     /* Tipografia */
     --font-family-base: 'Inter', sans-serif;
-    /* Fonte principal moderna e legível. */
     --font-family-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
-    /* Fontes monoespaçadas para código e dados técnicos. */
 }
 
-/* Importação da fonte Inter do Google Fonts.
-   Certifique-se de que esta URL esteja acessível. */
+/* Importação de Fontes do Google Fonts. */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-/* Importação da fonte Fira Code do Google Fonts (opcional, se não tiver localmente). */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
 
 /* Base Styles do Corpo da Página */
 html,
 body {
-    /* Define altura 100% para html e body */
     height: 100%;
-    /* Garante que html e body ocupem a altura total da viewport. */
     margin: 0;
-    /* Garante que não há margem padrão no body */
     padding: 0;
-    /* Garante que não há padding padrão no body */
 }
 
 body {
     font-family: var(--font-family-base);
-    /* Aplica a fonte base. */
-    /* Gradiente de fundo mais suave e moderno para o corpo da página. */
     background: linear-gradient(135deg, #A7BFE8 0%, #6190E8 100%);
     line-height: 1.6;
-    /* Altura da linha para melhor legibilidade. */
     color: var(--dark-color);
-    /* Cor de texto padrão. */
 }
 
 /* Container Principal da Aplicação */
 .container {
     max-width: 1200px;
-    /* Largura máxima para o conteúdo central. */
     margin: 20px auto;
-    /* Adiciona padding superior e inferior ao container */
     background: var(--light-bg);
-    /* Fundo principal suave. */
     border-radius: var(--border-radius-lg);
-    /* Cantos mais arredondados. */
     box-shadow: var(--shadow-lg);
-    /* Sombra mais pronunciada e moderna para destaque. */
     overflow: hidden;
-    /* Garante que o conteúdo não vaze dos cantos arredondados. */
     display: flex;
-    /* Adicionado para layout de footer */
     flex-direction: column;
-    /* Adicionado para layout de footer */
     min-height: calc(100% - 40px);
-    /* Ajusta altura mínima para ocupar o restante do body, considerando a margem do container */
 }
 
 /* Estilos do Cabeçalho da Aplicação */
 .header {
     background: linear-gradient(45deg, var(--dark-color), var(--dark-light));
-    /* Mantém o gradiente escuro para o cabeçalho. */
     color: white;
-    /* Cor do texto no cabeçalho. */
     padding: 30px;
-    /* Espaçamento interno. */
     text-align: center;
-    /* Centraliza o texto. */
 }
 
 .header h1 {
     font-size: 2.5em;
-    /* Tamanho do título principal. */
     margin-bottom: 10px;
-    /* Espaçamento abaixo do título. */
     font-weight: 700;
-    /* Peso da fonte para destaque. */
 }
 
 .header p {
     opacity: 0.9;
-    /* Leve transparência para a descrição. */
     font-size: 1.1em;
-    /* Tamanho da fonte da descrição. */
     font-weight: 300;
-    /* Peso da fonte mais leve. */
 }
 
 /* Layout do Conteúdo Principal (formulário de teste e resultados) */
 .main-content {
     display: grid;
-    /* Usa Grid Layout para as duas colunas. */
     grid-template-columns: 1fr 1fr;
-    /* Duas colunas de largura igual. */
     gap: 0;
-    /* Sem espaçamento entre as colunas (a borda direita do .test-config serve como divisor). */
     flex-grow: 1;
-    /* Permite que o conteúdo principal ocupe o espaço restante */
 }
 
 /* Painel de Configuração de Teste (lado esquerdo) */
 .test-config {
     padding: 30px;
-    /* Espaçamento interno. */
     background: var(--secondary-bg);
-    /* Fundo secundário para contraste sutil. */
     border-right: 1px solid var(--border-color);
-    /* Linha divisória entre os painéis. */
 }
 
-/* Estilos para os formulários de configuração (funcional e performance) */
+/* Estilos para os formulários de configuração */
 .test-config-form {
     padding-top: 20px;
-    /* Adiciona um pouco de padding para separar do cabeçalho da aba. */
 }
 
 /* Painel de Resultados de Teste (lado direito) */
 .test-results {
     padding: 30px;
     background: var(--light-bg);
-    /* Fundo principal */
     overflow: hidden;
 }
 
-/* Títulos de Seção (ex: "Resultados dos Testes", "Configuração do Teste") */
+/* Títulos de Seção */
 .section-title {
     font-size: 1.5em;
     margin-bottom: 20px;
@@ -197,7 +134,7 @@ body {
     font-weight: 600;
 }
 
-/* Form Styles */
+/* Estilos de Formulário */
 .form-group {
     margin-bottom: 20px;
 }
@@ -221,7 +158,6 @@ textarea {
     font-family: var(--font-family-base);
     color: var(--dark-color);
     background-color: white;
-    /* Mantém o fundo branco para inputs para melhor visibilidade */
 }
 
 input:focus,
@@ -238,7 +174,7 @@ textarea {
     font-family: var(--font-family-mono);
 }
 
-/* Button Styles */
+/* Estilos de Botão */
 .btn {
     background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
     color: white;
@@ -289,7 +225,7 @@ textarea {
     gap: 10px;
 }
 
-/* Results Container */
+/* Container de Resultados */
 .results-container {
     background: var(--secondary-bg);
     border-radius: var(--border-radius-lg);
@@ -298,14 +234,13 @@ textarea {
     border: 1px solid var(--border-color);
 }
 
-/* Test Result Cards */
+/* Cards de Resultado de Teste */
 .test-result {
     margin-bottom: 15px;
     padding: 15px;
     border-radius: var(--border-radius);
     border-left: 4px solid;
     background: white;
-    /* Mantém o fundo branco para os cards de resultado */
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
@@ -318,19 +253,17 @@ textarea {
 /* Estilos para cards de teste bem-sucedido */
 .test-result.success {
     background: #F0FDF4;
-    /* Fundo muito suave para sucesso */
     border-color: var(--success-color);
     color: var(--success-color);
-    /* Define a cor base do texto para verde */
+    /* Define a cor base do texto para o card inteiro */
 }
 
 /* Estilos para cards de teste com falha */
 .test-result.error {
     background: #FEF2F2;
-    /* Fundo muito suave para erro */
     border-color: var(--danger-color);
     color: var(--danger-color);
-    /* Define a cor base do texto para vermelho */
+    /* Define a cor base do texto para o card inteiro */
 }
 
 /* Título e status dentro do card de resultado */
@@ -341,8 +274,7 @@ textarea {
     font-size: 1.2em;
     font-weight: 600;
     margin-bottom: 10px;
-    color: var(--dark-color);
-    /* Mantém o título do card escuro para contraste */
+    /* REMOVIDO: color: var(--dark-color); para permitir herança */
 }
 
 .test-result .test-status {
@@ -350,25 +282,16 @@ textarea {
     display: flex;
     align-items: center;
     gap: 5px;
+    /* A cor será herdada de .test-result.success ou .test-result.error */
 }
 
-.test-result.success .test-status {
-    color: var(--success-color);
-    /* Ícone e texto "Passou" verdes */
-}
-
-.test-result.error .test-status {
-    color: var(--danger-color);
-    /* Ícone e texto "Falhou" vermelhos */
-}
-
-/* CORRIGIDO: Aplicar a cor do status diretamente aos parágrafos dentro de cards de sucesso/erro */
-.test-result.success p {
-    color: var(--success-color);
-}
-
-.test-result.error p {
-    color: var(--danger-color);
+/* Parágrafos dentro de cards de sucesso/erro */
+.test-result p {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    word-break: break-word;
+    color: inherit;
+    /* Herda a cor do pai (.test-result.success/error) */
 }
 
 /* Mantém o texto em negrito escuro para ênfase, sobrescrevendo a cor herdada */
@@ -386,7 +309,6 @@ textarea {
     font-size: 0.85em;
     line-height: 1.4;
     color: var(--dark-color);
-    /* Mantém a cor do código escura para legibilidade */
     margin-top: 10px;
     font-family: var(--font-family-mono);
 }
@@ -400,7 +322,6 @@ textarea {
 .test-result .validations-list h5 {
     font-size: 0.95em;
     color: var(--dark-color);
-    /* Mantém o título da lista de validações escuro */
     margin-bottom: 8px;
 }
 
@@ -409,13 +330,9 @@ textarea {
     padding-left: 0;
 }
 
-/* CORRIGIDO: Aplicar a cor do status diretamente aos itens de lista de validação */
-.test-result.success .validations-list li {
-    color: var(--success-color);
-}
-
-.test-result.error .validations-list li {
-    color: var(--danger-color);
+.test-result .validations-list li {
+    color: inherit;
+    /* Herda a cor do card pai */
 }
 
 /* Estilos para Métricas de Performance dentro do card de resultado */
@@ -428,7 +345,6 @@ textarea {
 .performance-metrics h5 {
     font-size: 0.95em;
     color: var(--dark-color);
-    /* Mantém o título das métricas escuro */
     margin-bottom: 8px;
 }
 
@@ -437,13 +353,9 @@ textarea {
     padding-left: 0;
 }
 
-/* CORRIGIDO: Aplicar a cor do status diretamente aos itens de lista de métricas de performance */
-.test-result.success .performance-metrics li {
-    color: var(--success-color);
-}
-
-.test-result.error .performance-metrics li {
-    color: var(--danger-color);
+.performance-metrics li {
+    color: inherit;
+    /* Herda a cor do card pai */
 }
 
 /* Seção de Sumário dos Testes */
@@ -489,7 +401,7 @@ textarea {
     color: var(--info-color);
 }
 
-/* Estilos para o Spinner de Carregamento */
+/* Estilos para o Spinner de Carregamento (mantidos caso sejam usados em JS) */
 .loading {
     display: none;
     text-align: center;
@@ -551,7 +463,7 @@ textarea {
     border-bottom-color: var(--primary-color);
 }
 
-/* Design Responsivo: Adaptação para diferentes tamanhos de tela */
+/* Design Responsivo */
 @media (max-width: 992px) {
     .main-content {
         grid-template-columns: 1fr;
@@ -602,7 +514,7 @@ textarea {
     }
 }
 
-/* Estilos de Impressão: Otimiza a aparência da página ao ser impressa */
+/* Estilos de Impressão */
 @media print {
     body {
         background: white;
@@ -626,15 +538,11 @@ textarea {
 /* Estilos do Footer */
 .footer {
     background: var(--dark-color);
-    /* Fundo escuro para o rodapé */
     color: white;
-    /* Texto branco */
     padding: 20px;
     text-align: center;
     margin-top: 30px;
-    /* Espaçamento superior para separar do conteúdo principal */
     border-top: 1px solid var(--dark-light);
-    /* Linha sutil no topo */
 }
 
 .footer-content {
@@ -650,12 +558,10 @@ textarea {
     font-size: 0.9em;
     margin: 0;
     color: white;
-    /* Garante que o texto do footer seja branco */
 }
 
 .footer .social-links a {
     color: var(--primary-color);
-    /* Cor dos links sociais */
     text-decoration: none;
     margin: 0 10px;
     font-weight: 600;
@@ -664,7 +570,6 @@ textarea {
 
 .footer .social-links a:hover {
     color: var(--primary-light);
-    /* Escurece os links ao hover */
     text-decoration: underline;
 }
 
