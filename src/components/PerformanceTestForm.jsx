@@ -9,7 +9,7 @@ const PerformanceTestForm = ({ onRunPerformanceTest, onClear, onExportJson, onEx
         url: 'https://example.com/', // URL padrão para teste
         method: 'GET', // Método HTTP padrão
         headers: '{"Content-Type": "application/json"}', // Headers padrão
-        body: '', // Corpo da requisição (vazio por padrão)
+        body: '{"key": "value"}', // Corpo da requisição (vazio por padrão)
         expectedStatus: '200', // Status HTTP esperado
         maxResponseTime: '2000', // Tempo máximo de resposta em ms
         numberOfRequests: '10', // Quantidade de requisições

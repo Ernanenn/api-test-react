@@ -9,7 +9,7 @@ const TestForm = ({ onRunTest, onClear, onExportJson, onExportPdf, isLoading }) 
         url: 'https://example.com/', // URL padrão para teste
         method: 'GET', // Método HTTP padrão
         headers: '{"Content-Type": "application/json"}', // Headers padrão
-        body: '', // Corpo da requisição (vazio por padrão)
+        body: '{"key": "value"}', // Corpo da requisição (vazio por padrão)
         expectedStatus: '200', // Status HTTP esperado
         name: 'Meu Teste', // Nome do teste
     });
