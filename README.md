@@ -54,7 +54,9 @@ cd meu-app
 Instale as dependências:
 
 npm install
+
 yarn install
+
 pnpm install
 
 Scripts Disponíveis
