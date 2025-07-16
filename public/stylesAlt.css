@@ -37,11 +37,11 @@
     --dark-light: #374151;
     /* Tom mais claro de escuro, para subtítulos ou detalhes. */
     --light-bg: #F0F2F5;
-    /* ALTERADO: Fundo principal mais suave, um cinza muito claro. */
+    /* Fundo principal mais suave, um cinza muito claro. */
     --secondary-bg: #E8ECF1;
-    /* ALTERADO: Fundo secundário, um cinza um pouco mais escuro para contraste sutil. */
+    /* Fundo secundário, um cinza um pouco mais escuro para contraste sutil. */
     --border-color: #D1D5DB;
-    /* ALTERADO: Bordas ligeiramente mais escuras para se adequar ao novo fundo. */
+    /* Bordas ligeiramente mais escuras para se adequar ao novo fundo. */
     --text-muted: #6B7280;
     /* Texto cinza suave para informações secundárias. */
 
@@ -79,7 +79,7 @@
 /* Base Styles do Corpo da Página */
 html,
 body {
-    /* ALTERADO: Define altura 100% para html e body */
+    /* Define altura 100% para html e body */
     height: 100%;
     /* Garante que html e body ocupem a altura total da viewport. */
     margin: 0;
@@ -104,7 +104,7 @@ body {
     max-width: 1200px;
     /* Largura máxima para o conteúdo central. */
     margin: 20px auto;
-    /* ALTERADO: Adiciona padding superior e inferior ao container */
+    /* Adiciona padding superior e inferior ao container */
     background: var(--light-bg);
     /* Fundo principal suave. */
     border-radius: var(--border-radius-lg);
@@ -118,7 +118,7 @@ body {
     flex-direction: column;
     /* Adicionado para layout de footer */
     min-height: calc(100% - 40px);
-    /* ALTERADO: Ajusta altura mínima para ocupar o restante do body, considerando a margem do container */
+    /* Ajusta altura mínima para ocupar o restante do body, considerando a margem do container */
 }
 
 /* Estilos do Cabeçalho da Aplicação */

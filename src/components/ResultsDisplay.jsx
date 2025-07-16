@@ -25,7 +25,7 @@ const ResultsDisplay = ({ results, summary, isLoading, containerRef }) => (
                         <h4>
                             <span>{result.name}</span>
                             <span className="test-status">
-                                {result.type === 'performance' ? 'Performance' : (result.status === 'passed' ? 'Passou' : 'Falhou')}
+                                {result.type === 'Passou' ? 'Falhou' : (result.status === 'passed' ? 'Passou' : 'Falhou')}
                                 {/* Ícones para testes funcionais já estão no ResultCard, mas para performance podemos adaptar */}
                             </span>
                         </h4>
