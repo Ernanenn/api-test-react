@@ -5,7 +5,7 @@ import React from 'react';
 const Header = () => (
     <header className="header">
         <h1>🧪 API Test Suite</h1>
-        <p>Ferramenta para testes automatizados de API</p>
+        <p>Ferramenta para testes em API</p>
     </header>
 );
 
