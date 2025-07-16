@@ -6,6 +6,12 @@ import Header from './components/Header.jsx';
 import TestForm from './components/TestForm.jsx';
 import PerformanceTestForm from './components/PerformanceTestForm.jsx'; // Novo componente
 import ResultsDisplay from './components/ResultsDisplay.jsx';
+<<<<<<< HEAD
+import Footer from './components/Footer.jsx'; // NOVO: Importa o componente Footer
+
+// Importação das funções de exportação.
+=======
+>>>>>>> c7e43a531ec394db129335a8e4fafca32acb2889
 import { exportToPdf, exportToJson } from './utils/exporters.js';
 
 // Componente principal da aplicação
@@ -105,6 +111,26 @@ export default function App() {
                     containerRef={resultsContainerRef}
                 />
             </main>
+<<<<<<< HEAD
+
+            {/* Container oculto para renderização de PDF filtrado.
+                Este div é posicionado fora da tela para não ser visível,
+                mas é usado pelo html2canvas para capturar o conteúdo correto para o PDF.
+                ALTERADO: Estilo para opacity: 0; pointer-events: none; para melhor compatibilidade com html2canvas. */}
+            <div style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', top: 0, left: 0, width: '1200px' }}>
+                <ResultsDisplay
+                    results={results}
+                    summary={summary} // O sumário pode não ser preciso para resultados filtrados aqui, mas é necessário para o componente.
+                    isLoading={false} // Não está em estado de carregamento para a exportação.
+                    containerRef={pdfExportContainerRef} // Referência para este container oculto.
+                    isExportMode={true} // Propriedade para indicar que está no modo de exportação.
+                    exportFilterType={activeTab} // Passa o tipo de aba ativa para filtrar os resultados para o PDF.
+                />
+            </div>
+
+            <Footer /> {/* NOVO: Adiciona o componente de rodapé aqui */}
+=======
+>>>>>>> c7e43a531ec394db129335a8e4fafca32acb2889
         </div>
     );
 }

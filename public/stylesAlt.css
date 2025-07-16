@@ -21,12 +21,27 @@
     --info-color: #0EA5E9; /* Azul claro para info */
 
     /* Cores Neutras e de Texto */
+<<<<<<< HEAD
+    --dark-color: #1F2937;
+    /* Texto e fundos escuros, quase preto. */
+    --dark-light: #374151;
+    /* Tom mais claro de escuro, para subtítulos ou detalhes. */
+    --light-bg: #F0F2F5;
+    /* Fundo principal mais suave, um cinza muito claro. */
+    --secondary-bg: #E8ECF1;
+    /* Fundo secundário, um cinza um pouco mais escuro para contraste sutil. */
+    --border-color: #D1D5DB;
+    /* Bordas ligeiramente mais escuras para se adequar ao novo fundo. */
+    --text-muted: #6B7280;
+    /* Texto cinza suave para informações secundárias. */
+=======
     --dark-color: #1F2937; /* Texto e fundos escuros, quase preto */
     --dark-light: #374151; /* Tom mais claro de escuro */
     --light-bg: #F8FAFC; /* Fundo principal muito suave (branco off-white) */
     --secondary-bg: #F1F5F9; /* Fundo secundário, para contraste sutil */
     --border-color: #E5E7EB; /* Bordas mais suaves */
     --text-muted: #6B7280; /* Texto cinza suave */
+>>>>>>> c7e43a531ec394db129335a8e4fafca32acb2889
 
     /* Sombras (inspiradas em Tailwind CSS) */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -50,13 +65,32 @@
 /* Importação da fonte Fira Code do Google Fonts (opcional, se não tiver localmente) */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
 
+<<<<<<< HEAD
+/* Base Styles do Corpo da Página */
+html,
+body {
+    /* ALTERADO: Define altura 100% para html e body */
+    height: 100%;
+    /* Garante que html e body ocupem a altura total da viewport. */
+    margin: 0;
+    /* Garante que não há margem padrão no body */
+    padding: 0;
+    /* Garante que não há padding padrão no body */
+}
+
+=======
 /* Base Styles */
+>>>>>>> c7e43a531ec394db129335a8e4fafca32acb2889
 body {
     font-family: var(--font-family-base);
     /* Gradiente de fundo mais suave e moderno */
     background: linear-gradient(135deg, #A7BFE8 0%, #6190E8 100%);
+<<<<<<< HEAD
+    /* Removido min-height: 100vh; e padding: 20px; daqui, movido para o container */
+=======
     min-height: 100vh;
     padding: 20px;
+>>>>>>> c7e43a531ec394db129335a8e4fafca32acb2889
     line-height: 1.6;
     color: var(--dark-color); /* Cor de texto base */
 }
@@ -64,11 +98,31 @@ body {
 /* Container Principal da Aplicação */
 .container {
     max-width: 1200px;
+<<<<<<< HEAD
+    /* Largura máxima para o conteúdo central. */
+    margin: 20px auto;
+    /* ALTERADO: Adiciona padding superior e inferior ao container */
+    background: var(--light-bg);
+    /* Fundo principal suave. */
+    border-radius: var(--border-radius-lg);
+    /* Cantos mais arredondados. */
+    box-shadow: var(--shadow-lg);
+    /* Sombra mais pronunciada e moderna para destaque. */
+    overflow: hidden;
+    /* Garante que o conteúdo não vaze dos cantos arredondados. */
+    display: flex;
+    /* Adicionado para layout de footer */
+    flex-direction: column;
+    /* Adicionado para layout de footer */
+    min-height: calc(100% - 40px);
+    /* ALTERADO: Ajusta altura mínima para ocupar o restante do body, considerando a margem do container */
+=======
     margin: 0 auto;
     background: var(--light-bg); /* Fundo principal suave */
     border-radius: var(--border-radius-lg); /* Cantos mais arredondados */
     box-shadow: var(--shadow-lg); /* Sombra mais pronunciada e moderna */
     overflow: hidden;
+>>>>>>> c7e43a531ec394db129335a8e4fafca32acb2889
 }
 
 /* Header */
@@ -95,8 +149,17 @@ body {
 .main-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
+<<<<<<< HEAD
+    /* Duas colunas de largura igual. */
+    gap: 0;
+    /* Sem espaçamento entre as colunas (a borda direita do .test-config serve como divisor). */
+    /* Removido min-height: 600px; para permitir flex-grow: 1 funcionar melhor */
+    flex-grow: 1;
+    /* Permite que o conteúdo principal ocupe o espaço restante */
+=======
     gap: 0; /* Mantém o gap de 0 para a linha divisória */
     min-height: 600px;
+>>>>>>> c7e43a531ec394db129335a8e4fafca32acb2889
 }
 
 /* Test Configuration Panel */
@@ -247,11 +310,15 @@ textarea {
 .test-result.success {
     background: #F0FDF4; /* Fundo muito suave para sucesso */
     border-color: var(--success-color);
+    color: var(--success-color);
+    /* Define a cor base do texto para verde */
 }
 
 .test-result.error {
     background: #FEF2F2; /* Fundo muito suave para erro */
     border-color: var(--danger-color);
+    color: var(--danger-color);
+    /* Define a cor base do texto para vermelho */
 }
 
 .test-result h4 {
@@ -271,6 +338,7 @@ textarea {
     gap: 5px;
 }
 
+/* A cor para .test-status já é definida por .test-result.success/error .test-status */
 .test-result.success .test-status {
     color: var(--success-color);
 }
@@ -530,5 +598,67 @@ textarea {
 
     .main-content {
         display: block;
+    }
+}
+
+/* Estilos do Footer */
+.footer {
+    background: var(--dark-color);
+    /* Fundo escuro para o rodapé */
+    color: white;
+    /* Texto branco */
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+    /* Espaçamento superior para separar do conteúdo principal */
+    border-top: 1px solid var(--dark-light);
+    /* Linha sutil no topo */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer p {
+    font-size: 0.9em;
+    margin: 0;
+    color: white;
+    /* Garante que o texto do footer seja branco */
+}
+
+.footer .social-links a {
+    color: var(--primary-color);
+    /* Cor dos links sociais */
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer .social-links a:hover {
+    color: var(--primary-light);
+    /* Escurece os links ao hover */
+    text-decoration: underline;
+}
+
+/* Responsividade para o footer */
+@media (max-width: 768px) {
+    .footer-content {
+        gap: 15px;
+    }
+
+    .footer .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .footer .social-links a {
+        margin: 0;
     }
 }
