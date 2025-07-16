@@ -59,7 +59,7 @@ body {
 
 body {
     font-family: var(--font-family-base);
-    background: linear-gradient(135deg, #A7BFE8 0%, #6190E8 100%);
+    background: linear-gradient(135deg, #6190E8 100%);
     line-height: 1.6;
     color: var(--dark-color);
 }
@@ -274,11 +274,9 @@ textarea {
     font-size: 1.2em;
     font-weight: 600;
     margin-bottom: 10px;
-    /* REMOVIDO: color: var(--dark-color); para permitir herança */
 }
 
 .test-result .test-status {
-    font-size: 0.9em;
     display: flex;
     align-items: center;
     gap: 5px;
